@@ -3,9 +3,20 @@
   <h1>PARCELPASS</h1>
   <p><strong>Every arrival. Accounted for.</strong></p>
   <p>A private delivery command center.<br>Log what’s on its way. Keep your arrivals in view. Own your delivery history.</p>
-  <p><a href="#the-experience">Explore the experience</a> · <a href="#run-locally">Run locally</a> · <a href="#api-reference">API reference</a></p>
+  <p><a href="https://parcelpass-rachit.onrender.com">Live application</a> · <a href="#the-experience">Explore the experience</a> · <a href="#run-locally">Run locally</a> · <a href="#api-reference">API reference</a></p>
   <p><img src="https://github.com/rachit1807/parcelpass/actions/workflows/ci.yml/badge.svg" alt="ParcelPass checks"> <img src="https://img.shields.io/badge/license-MIT-76e5f5?labelColor=101822" alt="MIT license"></p>
 </div>
+
+![ParcelPass dark desktop interface](docs/desktop-dark.png)
+
+<details>
+<summary>Light theme and mobile views</summary>
+
+![Light desktop](docs/desktop-light.png)
+
+<img src="docs/mobile-dark.png" alt="Dark mobile interface" width="290"> <img src="docs/mobile-light.png" alt="Light mobile interface" width="290">
+
+</details>
 
 ## The experience
 
@@ -182,6 +193,8 @@ The API uses parameterized SQL, ownership checks, body size limits, security hea
 Public registration does not verify email ownership. Password recovery and courier API integrations are not included. This app is intended for personal parcel records, not storing delivery access codes or payment data.
 
 ## Deployment
+
+The live application uses a dedicated **ParcelPass Render workspace** and a separate **Neon PostgreSQL project**. The database has no scheduled trial expiry. Free hosting can sleep when idle; provider quotas and continued service terms still apply.
 
 Host the Node service with `npm ci` as the build command and `npm start` as the start command. Use Node.js 24, configure `/api/health` as the HTTP health path, and set all production variables listed above.
 
