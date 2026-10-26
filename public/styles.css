@@ -17,3 +17,4 @@
 @media(max-width:640px){.parcel-row>div:last-child{grid-area:open}}
 @media(max-width:640px){.action-dock{width:calc(100% - 30px);max-width:370px;justify-content:space-between}.dock-button{flex:1;justify-content:center;padding:10px 7px;min-width:0}.manifest-heading>div{min-width:0}}
 @media(max-width:370px){.brand{font-size:17px}.brand small{font-size:5.5px;letter-spacing:.9px}.brand>svg{width:25px}.identity{max-width:66px;font-size:6px;gap:5px}.manifest-heading .launch-icon{display:none}.manifest-heading h2{font-size:18px}.manifest-heading .micro{font-size:6px;letter-spacing:1px}}
+@media(max-width:640px){.reactor-stage{overflow:clip}}
