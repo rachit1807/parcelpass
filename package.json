@@ -1,0 +1,8 @@
+{
+  "name": "parcelpass", "version": "1.0.0", "private": true,
+  "description": "A private delivery manifest powered by secure JWT sessions.",
+  "type": "module", "engines": {"node": ">=24 <25"},
+  "scripts": {"start": "node --env-file-if-exists=.env src/server.js", "dev": "node --watch --env-file-if-exists=.env src/server.js", "test": "node --test tests/api.test.js", "check": "node --check src/app.js && node --check src/db.js && node --check public/app.js", "test:e2e": "playwright test"},
+  "dependencies": {"bcryptjs": "^3.0.2", "cookie-parser": "^1.4.7", "dotenv": "^17.2.3", "express": "^5.1.0", "express-rate-limit": "^8.1.0", "helmet": "^8.1.0", "jsonwebtoken": "^9.0.2", "pg": "^8.16.3", "zod": "^4.1.12"},
+  "devDependencies": {"@playwright/test": "^1.56.1", "supertest": "^7.1.4"}
+}

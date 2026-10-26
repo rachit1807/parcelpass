@@ -1,0 +1,33 @@
+name: ParcelPass checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm test
+      - run: npm audit --omit=dev
+      - run: npx playwright install --with-deps chromium
+      - name: Start application
+        run: |
+          JWT_SECRET=$(openssl rand -hex 48) APP_ORIGIN=http://localhost:3000 npm start > /tmp/parcelpass-server.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://localhost:3000/api/health && break; sleep 1; done
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: parcelpass-browser-evidence
+          path: |
+            docs/*.png
+            test-results/
