@@ -8,7 +8,7 @@ const secret='test-secret-long-enough-for-parcelpass-2026';
 let store, app, alice, bob, parcel, aliceUser, revokedCookie;
 const password='SecureParcel123!';
 const details={title:'Keyboard',courier:'Blue Dart',tracking:'BD1234',expected_date:'2026-11-02',notes:'Leave at reception',status:'expected'};
-before(async()=>{store=await createStore({sqlitePath:':memory:'});app=createApp({store,secret,rateLimits:false});alice=request.agent(app);bob=request.agent(app);});
+before(async()=>{store=await createStore({url:process.env.TEST_DATABASE_URL,sqlitePath:':memory:'});app=createApp({store,secret,rateLimits:false});alice=request.agent(app);bob=request.agent(app);});
 after(async()=>store.close());
 test('health endpoint checks the database',async()=>{const r=await request(app).get('/api/health');assert.equal(r.status,200);assert.equal(r.body.status,'ok');assert.equal(r.headers['x-content-type-options'],'nosniff');});
 test('protected endpoints reject missing and forged JWTs',async()=>{assert.equal((await request(app).get('/api/parcels')).status,401);assert.equal((await request(app).get('/api/auth/me').set('Authorization','Bearer nope')).status,401);});
