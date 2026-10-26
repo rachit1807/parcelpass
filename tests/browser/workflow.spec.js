@@ -16,6 +16,7 @@ test('responsive preview, themes, animation controls, and dialogs',async({page})
  for(const width of [320,375,390,768,1024,1440]){
   await page.setViewportSize({width,height:900});
   const dimensions=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth}));
+  if(dimensions.scroll>dimensions.client) console.log('Overflow elements',await page.evaluate(()=>[...document.querySelectorAll('body *')].filter(e=>e.getBoundingClientRect().right>innerWidth).map(e=>({tag:e.tagName,cls:e.className,right:e.getBoundingClientRect().right})).slice(0,20)));
   expect(dimensions.scroll,`Overflow at ${width}`).toBeLessThanOrEqual(dimensions.client);
  }
  await page.setViewportSize({width:390,height:844});
